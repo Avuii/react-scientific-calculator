@@ -1861,3 +1861,573 @@ body {
   overscroll-behavior: contain;
   touch-action: none;
 }
+.graph-functions {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.graph-function-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 120px 48px 130px auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.3);
+  padding: 10px;
+}
+
+.graph-function-label {
+  color: #c084fc;
+  font-size: 1.2rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.graph-function-input,
+.graph-preset-select {
+  width: 100%;
+  min-height: 46px;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 0 14px;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.graph-preset-select option {
+  color: #111827;
+}
+
+.graph-color-input {
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.graph-color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.graph-color-input::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 16px;
+}
+
+.graph-width-control {
+  display: grid;
+  gap: 4px;
+}
+
+.graph-width-control span {
+  color: rgba(226, 232, 240, 0.6);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graph-width-control input {
+  width: 100%;
+  accent-color: #c084fc;
+}
+
+.graph-add-row-button,
+.graph-remove-row-button {
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0 15px;
+  cursor: pointer;
+  font-weight: 850;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.graph-add-row-button {
+  color: white;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9));
+  font-size: 1.25rem;
+}
+
+.graph-remove-row-button {
+  color: #fecdd3;
+  background: rgba(244, 63, 94, 0.14);
+}
+
+.graph-add-row-button:hover,
+.graph-remove-row-button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.graph-function-row small {
+  grid-column: 2 / -1;
+  color: #fda4af;
+  font-weight: 650;
+}
+
+.app.light .graph-function-row {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.app.light .graph-function-input,
+.app.light .graph-preset-select {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.app.light .graph-width-control span {
+  color: rgba(15, 23, 42, 0.56);
+}
+
+@media (max-width: 920px) {
+  .graph-function-row {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-add-row-button,
+  .graph-remove-row-button,
+  .graph-color-input {
+    width: 100%;
+  }
+
+  .graph-function-row small {
+    grid-column: auto;
+  }
+}
+.graph-function-label {
+  font-size: 1.2rem;
+  font-weight: 850;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.graph-add-row-button {
+  min-width: 48px;
+  min-height: 48px;
+  border: 1px solid rgba(99, 102, 241, 0.28) !important;
+  border-radius: 18px !important;
+  color: white !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  box-shadow:
+    0 10px 24px rgba(99, 102, 241, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  font-size: 1.25rem;
+  font-weight: 850;
+}
+
+.graph-add-row-button:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border-color: rgba(139, 92, 246, 0.42) !important;
+  transform: translateY(-1px);
+}
+
+.graph-remove-row-button {
+  min-height: 46px;
+  border: 1px solid rgba(244, 63, 94, 0.18) !important;
+  border-radius: 999px !important;
+  color: #fb7185 !important;
+  background: rgba(244, 63, 94, 0.1) !important;
+  padding: 0 16px;
+  font-weight: 800;
+}
+
+.graph-remove-row-button:hover {
+  color: #ffffff !important;
+  background: rgba(244, 63, 94, 0.7) !important;
+  border-color: rgba(244, 63, 94, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+.graph-preset-menu {
+  position: relative;
+  z-index: 20;
+}
+
+.graph-preset-trigger {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 750;
+  transition:
+    background 0.16s ease,
+    transform 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.graph-preset-trigger:hover {
+  color: inherit;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.graph-preset-trigger span {
+  color: rgba(226, 232, 240, 0.7);
+  font-size: 1rem;
+  transition: transform 0.18s ease;
+}
+
+.graph-preset-menu.open .graph-preset-trigger span {
+  transform: rotate(180deg);
+}
+
+.graph-preset-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: grid;
+  gap: 6px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(30, 41, 59, 0.96), rgba(49, 46, 129, 0.92)),
+    rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(26px) saturate(150%);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  padding: 8px;
+}
+
+.graph-preset-option {
+  width: 100%;
+  min-height: 40px;
+  border: 0;
+  border-radius: 14px;
+  color: rgba(248, 250, 252, 0.94);
+  background: transparent;
+  padding: 9px 11px;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 700;
+  transition:
+    background 0.14s ease,
+    transform 0.14s ease,
+    color 0.14s ease;
+}
+
+.graph-preset-option:hover {
+  color: #ffffff;
+  background: rgba(192, 132, 252, 0.22);
+  transform: translateX(2px);
+}
+
+.app.light .graph-add-row-button {
+  color: white !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+}
+
+.app.light .graph-add-row-button:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+}
+
+.app.light .graph-remove-row-button {
+  color: #e11d48 !important;
+  background: rgba(244, 63, 94, 0.11) !important;
+  border-color: rgba(244, 63, 94, 0.18) !important;
+}
+
+.app.light .graph-remove-row-button:hover {
+  color: white !important;
+  background: rgba(225, 29, 72, 0.75) !important;
+}
+
+.app.light .graph-preset-trigger {
+  color: rgba(15, 23, 42, 0.9);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.app.light .graph-preset-trigger:hover {
+  color: rgba(15, 23, 42, 0.95);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.app.light .graph-preset-trigger span {
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.app.light .graph-preset-list {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.92)),
+    rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.app.light .graph-preset-option {
+  color: rgba(15, 23, 42, 0.9);
+}
+
+.app.light .graph-preset-option:hover {
+  color: rgba(15, 23, 42, 1);
+  background: rgba(168, 85, 247, 0.14);
+}
+
+@media (max-width: 920px) {
+  .graph-preset-menu,
+  .graph-preset-trigger {
+    width: 100%;
+  }
+}
+.graph-function-label {
+  font-size: 1.2rem;
+  font-weight: 850;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.graph-add-row-button {
+  min-width: 48px;
+  min-height: 48px;
+  border: 1px solid rgba(99, 102, 241, 0.28) !important;
+  border-radius: 18px !important;
+  color: white !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  box-shadow:
+    0 10px 24px rgba(99, 102, 241, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  font-size: 1.25rem;
+  font-weight: 850;
+}
+
+.graph-add-row-button:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border-color: rgba(139, 92, 246, 0.42) !important;
+  transform: translateY(-1px);
+}
+
+.graph-remove-row-button {
+  min-height: 46px;
+  border: 1px solid rgba(244, 63, 94, 0.18) !important;
+  border-radius: 999px !important;
+  color: #fb7185 !important;
+  background: rgba(244, 63, 94, 0.1) !important;
+  padding: 0 16px;
+  font-weight: 800;
+}
+
+.graph-remove-row-button:hover {
+  color: #ffffff !important;
+  background: rgba(244, 63, 94, 0.72) !important;
+  border-color: rgba(244, 63, 94, 0.55) !important;
+  transform: translateY(-1px);
+}
+
+.graph-preset-menu {
+  position: relative;
+  z-index: 80;
+}
+
+.graph-preset-trigger {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 750;
+  transition: background 0.16s ease, transform 0.16s ease;
+}
+
+.graph-preset-trigger:hover {
+  color: inherit;
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.graph-preset-trigger span {
+  color: rgba(226, 232, 240, 0.7);
+  transition: transform 0.18s ease;
+}
+
+.graph-preset-menu.open .graph-preset-trigger span {
+  transform: rotate(180deg);
+}
+
+.graph-preset-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  gap: 6px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(30, 41, 59, 0.96), rgba(49, 46, 129, 0.92)),
+    rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(26px) saturate(150%);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  padding: 8px;
+}
+
+.graph-preset-option {
+  width: 100%;
+  min-height: 40px;
+  border: 0;
+  border-radius: 14px;
+  color: rgba(248, 250, 252, 0.94);
+  background: transparent;
+  padding: 9px 11px;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 700;
+  transition: background 0.14s ease, transform 0.14s ease, color 0.14s ease;
+}
+
+.graph-preset-option:hover {
+  color: #ffffff;
+  background: rgba(192, 132, 252, 0.22);
+  transform: translateX(2px);
+}
+
+.graph-apply-range-button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 18px !important;
+  color: white !important;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9)) !important;
+  padding: 0 16px;
+  cursor: pointer;
+  font-weight: 800;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease;
+}
+
+.graph-apply-range-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(124, 58, 237, 0.26);
+}
+
+.graph-apply-range-button:active {
+  transform: scale(0.97);
+}
+
+.graph-apply-range-button.applied {
+  animation: applyRangePulse 1.2s ease;
+  background: linear-gradient(135deg, #10b981, #22c55e) !important;
+  border-color: rgba(34, 197, 94, 0.5) !important;
+}
+
+.graph-apply-range-button.applied::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.45), transparent 62%);
+  animation: applyRangeGlow 0.75s ease-out;
+}
+
+@keyframes applyRangePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+  }
+
+  35% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.12);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes applyRangeGlow {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.app.light .graph-add-row-button {
+  color: white !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+}
+
+.app.light .graph-remove-row-button {
+  color: #e11d48 !important;
+  background: rgba(244, 63, 94, 0.11) !important;
+  border-color: rgba(244, 63, 94, 0.18) !important;
+}
+
+.app.light .graph-remove-row-button:hover {
+  color: white !important;
+  background: rgba(225, 29, 72, 0.75) !important;
+}
+
+.app.light .graph-preset-trigger {
+  color: rgba(15, 23, 42, 0.9);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.app.light .graph-preset-trigger:hover {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.app.light .graph-preset-trigger span {
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.app.light .graph-preset-list {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.92)),
+    rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.app.light .graph-preset-option {
+  color: rgba(15, 23, 42, 0.9);
+}
+
+.app.light .graph-preset-option:hover {
+  color: rgba(15, 23, 42, 1);
+  background: rgba(168, 85, 247, 0.14);
+}
