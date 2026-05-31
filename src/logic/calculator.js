@@ -12,6 +12,31 @@ export function formatResult(value) {
   return String(rounded);
 }
 
+const functionNames = [
+  "sin",
+  "cos",
+  "tan",
+  "sec",
+  "csc",
+  "cot",
+  "asin",
+  "acos",
+  "atan",
+  "sinh",
+  "cosh",
+  "tanh",
+  "ln",
+  "log",
+  "sqrt",
+  "abs",
+  "exp",
+  "floor",
+  "ceil",
+  "round",
+  "fact",
+  "random",
+];
+
 function replaceFactorials(expression) {
   let prepared = expression;
   let previous = "";
@@ -28,8 +53,7 @@ function replaceFactorials(expression) {
 }
 
 function normalizeExpression(expression) {
-  const functionNames =
-    "sin|cos|tan|sec|csc|cot|asin|acos|atan|sinh|cosh|tanh|ln|log|sqrt|abs|exp|floor|ceil|round|fact";
+  const functionPattern = functionNames.join("|");
 
   let prepared = expression
     .replaceAll("÷", "/")
@@ -42,19 +66,19 @@ function normalizeExpression(expression) {
     .replace(/\bmod\b/gi, "%");
 
   prepared = prepared.replace(
-    new RegExp(`\\b(${functionNames})\\s+(-?\\d+(?:\\.\\d+)?|pi|e|x)\\b`, "gi"),
+    new RegExp(`\\b(${functionPattern})\\s+(-?\\d+(?:\\.\\d+)?|pi|e|x)\\b`, "gi"),
     "$1($2)"
   );
 
   prepared = prepared.replace(/\s+/g, "");
   prepared = replaceFactorials(prepared);
 
-  prepared = prepared
-    .replace(
-      new RegExp(`(\\d|\\)|pi|e|x)(?=(x|pi|e|\\(|${functionNames}))`, "g"),
-      "$1*"
-    )
-    .replace(/\b(x|pi|e)\b(?=\()/g, "$1*");
+  const implicitTargets = `\\(|\\b(?:x|pi|e)\\b|\\b(?:${functionPattern})\\b`;
+
+  prepared = prepared.replace(
+    new RegExp(`(\\d+(?:\\.\\d+)?|\\)|\\bpi\\b|\\be\\b|\\bx\\b)(?=${implicitTargets})`, "g"),
+    "$1*"
+  );
 
   return prepared;
 }
@@ -140,6 +164,7 @@ export function createEvaluator(expression, angleMode = "DEG") {
   const sin = (value) => Math.sin(toAngle(value));
   const cos = (value) => Math.cos(toAngle(value));
   const tan = (value) => Math.tan(toAngle(value));
+
   const sec = (value) => 1 / cos(value);
   const csc = (value) => 1 / sin(value);
   const cot = (value) => 1 / tan(value);

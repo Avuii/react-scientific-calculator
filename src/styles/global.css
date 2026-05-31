@@ -1722,3 +1722,142 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.graph-range-panel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.graph-range-panel label {
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.28);
+  padding: 10px 12px;
+}
+
+.graph-range-panel span {
+  color: rgba(226, 232, 240, 0.58);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.graph-range-panel input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.graph-range-panel button {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  color: white;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(124, 58, 237, 0.9));
+  padding: 0 16px;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.graph-canvas-wrapper {
+  position: relative;
+}
+
+.graph-canvas {
+  cursor: grab;
+  touch-action: none;
+}
+
+.graph-canvas:active {
+  cursor: grabbing;
+}
+
+.graph-coordinate-pill {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 4;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(248, 250, 252, 0.88);
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(18px);
+  padding: 9px 13px;
+  font-size: 0.85rem;
+  font-weight: 650;
+  pointer-events: none;
+}
+
+.graph-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.graph-footer span {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(226, 232, 240, 0.68);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.app.light .graph-range-panel label {
+  background: rgba(255, 255, 255, 0.48);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+.app.light .graph-range-panel span {
+  color: rgba(15, 23, 42, 0.56);
+}
+
+.app.light .graph-coordinate-pill {
+  color: rgba(15, 23, 42, 0.82);
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.app.light .graph-footer span {
+  color: rgba(15, 23, 42, 0.62);
+  background: rgba(255, 255, 255, 0.48);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 900px) {
+  .graph-range-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .graph-range-panel button {
+    min-height: 48px;
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .graph-range-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-range-panel button {
+    grid-column: auto;
+  }
+}
+.graph-canvas-wrapper {
+  overscroll-behavior: contain;
+}
+
+.graph-canvas {
+  overscroll-behavior: contain;
+  touch-action: none;
+}
