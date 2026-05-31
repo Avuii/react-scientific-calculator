@@ -48,7 +48,7 @@ function Calculator() {
       >
         <div className="top-bar">
           <div>
-            <p className="eyebrow">Scientific Calculator</p>
+            <p className="eyebrow"></p>
             <h1>Calculator</h1>
             <p className="subtitle">Advanced calculations with graphing mode</p>
           </div>
