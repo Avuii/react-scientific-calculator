@@ -58,7 +58,7 @@ function FunctionMenu({ title, options, onInput }) {
       >
         <span>
           <small>{title}</small>
-          <strong>Wybierz funkcję</strong>
+          <strong>Select function</strong>
         </span>
         <span className="function-menu-arrow">⌄</span>
       </button>
@@ -85,13 +85,13 @@ function ScienceToolbar({ onInput }) {
   return (
     <div className="science-toolbar">
       <FunctionMenu
-        title="Trygonometria"
+        title="Trigonometry"
         options={trigonometryOptions}
         onInput={onInput}
       />
 
       <FunctionMenu
-        title="Funkcje"
+        title="Functions"
         options={functionOptions}
         onInput={onInput}
       />

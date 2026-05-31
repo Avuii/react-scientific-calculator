@@ -79,6 +79,12 @@ The application was created to practice building a responsive web interface with
 - responsive canvas rendering
 - separate graph colors for dark and light theme
 
+### 🔁 Unit Converter
+
+- convert length, mass, temperature, time, data and speed units
+- swap source and target units
+- responsive converter layout
+
 ### 🎨 Interface
 
 - modern glassmorphism UI

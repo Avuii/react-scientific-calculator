@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Display from "./Display";
 import CalcButton from "./CalcButton";
+import ConverterPanel from "./ConverterPanel";
 import HistoryPanel from "./HistoryPanel";
 import ThemeToggle from "./ThemeToggle";
 import ScienceToolbar from "./ScienceToolbar";
@@ -65,6 +66,12 @@ function Calculator() {
                             >
                                 Graph
                             </button>
+                            <button
+                                className={activeView === "converter" ? "active" : ""}
+                                onClick={() => setActiveView("converter")}
+                            >
+                                Converter
+                            </button>
                         </div>
 
                         <button className="mode-button" onClick={toggleAngleMode}>
@@ -75,7 +82,7 @@ function Calculator() {
                     </div>
                 </div>
 
-                {activeView === "calculator" ? (
+                {activeView === "calculator" && (
                     <div className="calculator-layout">
                         <section className="calculator-card">
                             <Display expression={expression} result={result} />
@@ -101,9 +108,11 @@ function Calculator() {
                             onClear={clearHistory}
                         />
                     </div>
-                ) : (
-                    <GraphPanel theme={theme} />
                 )}
+
+                {activeView === "graph" && <GraphPanel theme={theme} />}
+
+                {activeView === "converter" && <ConverterPanel />}
             </section>
         </main>
     );
