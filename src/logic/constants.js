@@ -1,3 +1,5 @@
+export const memoryButtons = ["MC", "MR", "M+", "M-"];
+
 export const scientificButtons = [
   "π",
   "e",
@@ -34,6 +36,12 @@ export const buttonTypes = {
   C: "danger",
   DEL: "danger",
   "=": "equals",
+
+  MC: "memory",
+  MR: "memory",
+  "M+": "memory",
+  "M-": "memory",
+
   "÷": "operator",
   "×": "operator",
   "−": "operator",
@@ -41,9 +49,19 @@ export const buttonTypes = {
   "%": "operator",
   mod: "operator",
   ANS: "operator",
+
   sin: "scientific",
   cos: "scientific",
   tan: "scientific",
+  sec: "scientific",
+  csc: "scientific",
+  cot: "scientific",
+  asin: "scientific",
+  acos: "scientific",
+  atan: "scientific",
+  sinh: "scientific",
+  cosh: "scientific",
+  tanh: "scientific",
   ln: "scientific",
   log: "scientific",
   "√": "scientific",
@@ -53,6 +71,11 @@ export const buttonTypes = {
   "1/x": "scientific",
   "|x|": "scientific",
   exp: "scientific",
+  "n!": "scientific",
+  floor: "scientific",
+  ceil: "scientific",
+  round: "scientific",
+  random: "scientific",
   π: "scientific",
   e: "scientific",
   "(": "scientific",

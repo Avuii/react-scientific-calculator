@@ -5,6 +5,7 @@ import { useLocalStorage } from "./useLocalStorage";
 export function useCalculator() {
   const [expression, setExpression] = useState("");
   const [result, setResult] = useState("0");
+  const [memory, setMemory] = useLocalStorage("calculator-memory", 0);
   const [angleMode, setAngleMode] = useLocalStorage("angle-mode", "DEG");
   const [history, setHistory] = useLocalStorage("calculator-history", []);
 
@@ -20,6 +21,11 @@ export function useCalculator() {
   const deleteLast = useCallback(() => {
     setExpression((current) => current.slice(0, -1));
   }, []);
+
+  const getNumericResult = useCallback(() => {
+    const value = Number(String(result).replace(",", "."));
+    return Number.isFinite(value) ? value : 0;
+  }, [result]);
 
   const calculate = useCallback(() => {
     try {
@@ -44,6 +50,26 @@ export function useCalculator() {
 
   const handleInput = useCallback(
     (value) => {
+      if (value === "MC") {
+        setMemory(0);
+        return;
+      }
+
+      if (value === "MR") {
+        addToExpression(String(memory));
+        return;
+      }
+
+      if (value === "M+") {
+        setMemory((current) => current + getNumericResult());
+        return;
+      }
+
+      if (value === "M-") {
+        setMemory((current) => current - getNumericResult());
+        return;
+      }
+
       if (value === "C") {
         clear();
         return;
@@ -59,7 +85,28 @@ export function useCalculator() {
         return;
       }
 
-      if (["sin", "cos", "tan", "ln", "log", "exp"].includes(value)) {
+      if (
+        [
+          "sin",
+          "cos",
+          "tan",
+          "sec",
+          "csc",
+          "cot",
+          "asin",
+          "acos",
+          "atan",
+          "sinh",
+          "cosh",
+          "tanh",
+          "ln",
+          "log",
+          "exp",
+          "floor",
+          "ceil",
+          "round",
+        ].includes(value)
+      ) {
         addToExpression(`${value}(`);
         return;
       }
@@ -94,6 +141,16 @@ export function useCalculator() {
         return;
       }
 
+      if (value === "n!") {
+        addToExpression("fact(");
+        return;
+      }
+
+      if (value === "random") {
+        addToExpression("random()");
+        return;
+      }
+
       if (value === "mod") {
         addToExpression("%");
         return;
@@ -115,7 +172,17 @@ export function useCalculator() {
 
       addToExpression(value);
     },
-    [expression, result, addToExpression, calculate, clear, deleteLast]
+    [
+      expression,
+      result,
+      memory,
+      addToExpression,
+      calculate,
+      clear,
+      deleteLast,
+      getNumericResult,
+      setMemory,
+    ]
   );
 
   const clearHistory = useCallback(() => {
@@ -134,6 +201,7 @@ export function useCalculator() {
   return {
     expression,
     result,
+    memory,
     history,
     angleMode,
     handleInput,

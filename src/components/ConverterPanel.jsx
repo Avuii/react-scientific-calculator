@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const converterGroups = {
   length: {
@@ -86,6 +86,69 @@ function formatConvertedValue(value) {
   return Number(value.toPrecision(10)).toString();
 }
 
+function UnitDropdown({ label, value, options, onChange }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  function chooseOption(option) {
+    onChange(option);
+    setIsOpen(false);
+  }
+
+  return (
+    <div className={`converter-dropdown ${isOpen ? "open" : ""}`} ref={dropdownRef}>
+      <button
+        type="button"
+        className="converter-dropdown-trigger"
+        onClick={() => setIsOpen((current) => !current)}
+      >
+        <span>
+          <small>{label}</small>
+          <strong>{value}</strong>
+        </span>
+        <span className="converter-dropdown-arrow">⌄</span>
+      </button>
+
+      {isOpen && (
+        <div className="converter-dropdown-list">
+          {options.map((option) => (
+            <button
+              type="button"
+              key={option}
+              className={option === value ? "converter-dropdown-option active" : "converter-dropdown-option"}
+              onClick={() => chooseOption(option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ConverterPanel() {
   const [groupKey, setGroupKey] = useState("length");
   const [inputValue, setInputValue] = useState("1");
@@ -160,37 +223,23 @@ function ConverterPanel() {
           </div>
 
           <div className="converter-units">
-            <label>
-              <span>From unit</span>
-              <select
-                value={fromUnit}
-                onChange={(event) => setFromUnit(event.target.value)}
-              >
-                {unitNames.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <UnitDropdown
+              label="From unit"
+              value={fromUnit}
+              options={unitNames}
+              onChange={setFromUnit}
+            />
 
             <button className="converter-swap" onClick={swapUnits}>
               ⇄
             </button>
 
-            <label>
-              <span>To unit</span>
-              <select
-                value={toUnit}
-                onChange={(event) => setToUnit(event.target.value)}
-              >
-                {unitNames.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <UnitDropdown
+              label="To unit"
+              value={toUnit}
+              options={unitNames}
+              onChange={setToUnit}
+            />
           </div>
 
           <div className="converter-result">
