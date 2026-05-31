@@ -4,6 +4,9 @@ const trigonometryOptions = [
   { label: "sin", value: "sin" },
   { label: "cos", value: "cos" },
   { label: "tan", value: "tan" },
+  { label: "sec", value: "sec" },
+  { label: "csc", value: "csc" },
+  { label: "cot", value: "cot" },
 ];
 
 const functionOptions = [
@@ -16,6 +19,20 @@ const functionOptions = [
   { label: "ln", value: "ln" },
   { label: "log", value: "log" },
   { label: "exp", value: "exp" },
+];
+
+const advancedOptions = [
+  { label: "x!", value: "n!" },
+  { label: "asin", value: "asin" },
+  { label: "acos", value: "acos" },
+  { label: "atan", value: "atan" },
+  { label: "sinh", value: "sinh" },
+  { label: "cosh", value: "cosh" },
+  { label: "tanh", value: "tanh" },
+  { label: "floor", value: "floor" },
+  { label: "ceil", value: "ceil" },
+  { label: "round", value: "round" },
+  { label: "random", value: "random" },
 ];
 
 function FunctionMenu({ title, options, onInput }) {
@@ -93,6 +110,12 @@ function ScienceToolbar({ onInput }) {
       <FunctionMenu
         title="Functions"
         options={functionOptions}
+        onInput={onInput}
+      />
+
+      <FunctionMenu
+        title="Advanced"
+        options={advancedOptions}
         onInput={onInput}
       />
     </div>

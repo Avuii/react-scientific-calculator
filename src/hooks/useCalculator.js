@@ -142,7 +142,7 @@ export function useCalculator() {
       }
 
       if (value === "n!") {
-        addToExpression("fact(");
+        addToExpression("!");
         return;
       }
 
