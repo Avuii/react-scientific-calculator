@@ -1,7 +1,7 @@
 # 🧮 React Scientific Calculator
 
 <p align="center">
-  <strong>Modern scientific calculator web app with interactive graphing mode.</strong>
+  <strong>Modern scientific calculator web app with interactive graphing, memory operations and unit conversion.</strong>
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/JavaScript-Core-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111827" />
   <img src="https://img.shields.io/badge/Canvas-Graphs-9F7AEA?style=for-the-badge" />
   <img src="https://img.shields.io/badge/CSS-Glassmorphism-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
-  <img src="https://img.shields.io/badge/Web-App-111827?style=for-the-badge&logo=googlechrome&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub%20Pages-Deployed-222222?style=for-the-badge&logo=githubpages&logoColor=white" />
 </p>
 
 <p align="center">
@@ -26,6 +26,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Graphing Mode](#graphing-mode)
+- [Unit Converter](#unit-converter)
 - [Tech Stack](#tech-stack)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
@@ -39,11 +40,11 @@
 
 ## 📌 Overview
 
-**React Scientific Calculator** is a modern web application for performing basic and scientific calculations.
+**React Scientific Calculator** is a modern web application for performing basic, scientific and graph-based calculations.
 
-The project includes a glassmorphism-inspired interface, dark and light mode, calculation history, keyboard support and an interactive graphing mode for visualizing mathematical functions.
+The project includes a glassmorphism-inspired responsive interface, dark and light mode, calculation history, memory operations, keyboard support, unit conversion and an interactive graphing mode for visualizing mathematical functions.
 
-The application was created to practice building a responsive web interface with **React**, **Vite**, **JavaScript**, **CSS** and the **Canvas API**.
+The application was created to practice building a structured React project with **Vite**, **JavaScript**, **CSS**, **React Hooks**, **localStorage** and the **HTML Canvas API**.
 
 ---
 
@@ -59,30 +60,61 @@ The application was created to practice building a responsive web interface with
 - delete and clear actions
 - result formatting
 - keyboard input support
+- calculation history saved in localStorage
+
+### 🧠 Memory Operations
+
+- MC — clear memory
+- MR — recall memory
+- M+ — add current result to memory
+- M- — subtract current result from memory
+- memory value saved in localStorage
 
 ### 🔬 Scientific Functions
 
 - trigonometric functions: sin, cos, tan
+- additional trigonometric functions: sec, csc, cot
+- inverse trigonometric functions: asin, acos, atan
+- hyperbolic functions: sinh, cosh, tanh
 - logarithmic functions: log, ln
 - constants: π and e
 - powers and roots
+- factorial
 - absolute value
 - exponential function
+- floor, ceil and round
+- random number function
 - modulo operation
 - previous result usage with ANS
 
 ### 📊 Graphing Mode
 
 - draw function graphs directly in the browser
-- support for functions such as sin(x), cos(x), x^2 and log(x)
-- zoom in, zoom out and reset view
+- support for multiple functions at the same time
+- add and remove function rows
+- edit each function expression separately
+- choose graph color per function
+- change line thickness per function
+- use function presets
+- zoom in and zoom out with buttons
+- zoom with mouse wheel
+- pan the graph by dragging
+- display cursor coordinates
+- reset graph view
+- manually set X/Y axis range
 - responsive canvas rendering
 - separate graph colors for dark and light theme
 
 ### 🔁 Unit Converter
 
-- convert length, mass, temperature, time, data and speed units
+- convert length units
+- convert mass units
+- convert temperature units
+- convert time units
+- convert data units
+- convert speed units
 - swap source and target units
+- custom styled dropdowns
 - responsive converter layout
 
 ### 🎨 Interface
@@ -91,8 +123,9 @@ The application was created to practice building a responsive web interface with
 - dark and light theme
 - animated background
 - responsive layout
-- custom dropdown menus for scientific functions
-- calculation history saved in localStorage
+- custom dropdown menus
+- clean scientific calculator layout
+- premium-style buttons and cards
 
 ---
 
@@ -100,7 +133,16 @@ The application was created to practice building a responsive web interface with
 
 ## 📈 Graphing Mode
 
-The application includes a graphing view where the user can enter a mathematical expression and draw its graph.
+The graphing mode allows the user to create and compare multiple function graphs.
+
+Each function row includes:
+
+- function label, such as f1(x), f2(x), f3(x)
+- editable expression input
+- preset selector
+- color picker
+- line thickness control
+- add or delete function controls
 
 Example expressions:
 
@@ -115,9 +157,39 @@ log(x)
 exp(x/4)
 ```
 
-Graphing is implemented with the **HTML Canvas API**.
+The graph is rendered with the **HTML Canvas API**.  
+The canvas updates when the function list, axis range, zoom level, theme or cursor position changes.
 
-The canvas is redrawn when the expression, zoom level or theme changes.
+Interactive graph controls:
+
+```txt
+Drag mouse      -> pan graph
+Mouse wheel     -> zoom graph
+Reset button    -> reset graph view
+X/Y range input -> manually set graph window
+Cursor move     -> show graph coordinates
+```
+
+---
+
+<a id="unit-converter"></a>
+
+## 🔁 Unit Converter
+
+The application includes a separate converter mode for common unit conversions.
+
+Supported categories:
+
+```txt
+Length
+Mass
+Temperature
+Time
+Data
+Speed
+```
+
+The converter allows selecting source and target units, entering a numeric value and swapping units with one button.
 
 ---
 
@@ -199,6 +271,7 @@ react-scientific-calculator/
 │   ├── components/
 │   │   ├── CalcButton.jsx
 │   │   ├── Calculator.jsx
+│   │   ├── ConverterPanel.jsx
 │   │   ├── Display.jsx
 │   │   ├── GraphPanel.jsx
 │   │   ├── HistoryPanel.jsx
@@ -222,20 +295,19 @@ react-scientific-calculator/
 └── .gitignore
 ```
 
+
 ---
 
 <a id="future-improvements"></a>
 
 ## 🚧 Future Improvements
 
-- add more scientific functions
-- add support for multiple graph lines
-- add graph panning with mouse drag
-- improve expression parser
-- add memory buttons
+- add better error messages for invalid expressions
+- add support for saving graph presets
+- add graph export as image
 - add more calculator themes
-- add unit conversion mode
-- add tests for calculator logic
+- add unit tests for calculator logic
+- improve accessibility for keyboard and screen reader users
 
 ---
 
